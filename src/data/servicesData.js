@@ -13,6 +13,18 @@ const customCard = (categoryName) => ({
   whatsappMsg: `Mujhe ${categoryName} ka custom order karna hai`,
 });
 
+// 🎨 Copyright-free placeholder images (Unsplash CDN)
+// Free to use — commercial bhi allowed
+export const PLACEHOLDERS = {
+  banner:  'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80',
+  logo:    'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80',
+  theme:   'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80',
+  frame:   'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=800&q=80',
+  gif:     'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=800&q=80',
+  svg:     'https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?w=800&q=80',
+  default: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80',
+};
+
 export const servicesData = {
   banner: {
     id: 'banner',
@@ -81,7 +93,7 @@ export const servicesData = {
     emoji: '📁',
     tagline: 'High-quality SVG files for designers and creators',
     items: [
-      { id: 1, title: 'Icon Pack', type: 'image', src: '/svg1.jpg', price: '₹99' },
+      { id: 1, title: 'Icon Pack', type: 'image', src: '/svg1.png', price: '₹99' },
       { id: 2, title: 'Vector Art', type: 'image', src: '/svg2.jpg', price: '₹149' },
     ],
   },

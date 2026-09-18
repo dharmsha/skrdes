@@ -4,60 +4,21 @@ import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { servicesData } from '@/data/servicesData'
 
-// 🔥 Types
-type Tab = {
-  id: string
-  name: string
-  emoji: string
-}
-
-type PreviewItem = {
-  id: number | string
-  title: string
-  type: 'image' | 'video' | 'custom' | string
-  src: string
-  price: string
-  note?: string
-  whatsappMsg?: string
-}
-
-type Service = {
-  id: string
-  name: string
-  emoji: string
-  tagline: string
-  items: PreviewItem[]
-}
-
-type FallbackTextMap = {
-  [key: string]: string
-}
-
-const tabs: Tab[] = [
-  { id: 'home', name: 'Home', emoji: '🏠' },
-  { id: 'banner', name: 'Banner', emoji: '🖼️' },
-  { id: 'logo', name: 'Logo', emoji: '🎨' },
-  { id: 'theme', name: 'Theme', emoji: '✨' },
-  { id: 'frame', name: 'Frame', emoji: '🖼️' },
-  { id: 'gif', name: 'Customised GIF', emoji: '🎁' },
-  { id: 'svg', name: 'SVG Files', emoji: '📁' },
+// 🎯 Tabs
+const tabs = [
+  { id: 'home',    name: 'Home',            emoji: '🏠' },
+  { id: 'banner',  name: 'Banner',          emoji: '🖼️' },
+  { id: 'logo',    name: 'Logo',            emoji: '🎨' },
+  { id: 'theme',   name: 'Theme',           emoji: '✨' },
+  { id: 'frame',   name: 'Frame',           emoji: '🖼️' },
+  { id: 'gif',     name: 'Customised GIF',  emoji: '🎁' },
+  { id: 'svg',     name: 'SVG Files',       emoji: '📁' },
 ]
 
-// 🔥 Fallback text with index signature
-const fallbackText: FallbackTextMap = {
-  banner: 'Professional Banner Designs',
-  logo: 'Creative Logo Designs',
-  theme: 'Premium Theme Packs',
-  frame: 'Stylish Photo Frames',
-  gif: 'Custom Animated GIFs',
-  svg: 'High-Quality SVG Files',
-}
-
-export default function Courses() {
-  const [activeTab, setActiveTab] = useState<string>('home')
-  const [isVisible, setIsVisible] = useState<boolean>(false)
-  const [imgErrors, setImgErrors] = useState<Record<string, boolean>>({})
-  const sectionRef = useRef<HTMLElement | null>(null)
+export default function Services() {
+  const [activeTab, setActiveTab] = useState('home')
+  const [isVisible, setIsVisible] = useState(false)
+  const sectionRef = useRef(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -70,22 +31,15 @@ export default function Courses() {
     return () => observer.disconnect()
   }, [])
 
-  // 🔥 Type assertion
-  const serviceList = Object.values(servicesData) as Service[]
+  // 🎯 Active tab ke hisaab se services filter karo
+  const allServices = Object.values(servicesData)
 
-  // 🔥 Preview item with proper types
-  const getPreviewItem = (service: Service): PreviewItem | null => {
-    const first = service.items[0]
-    if (
-      first &&
-      first.src &&
-      (first.type === 'image' || first.type === 'video') &&
-      !imgErrors[service.id]
-    ) {
-      return first
-    }
-    return null
-  }
+  // Agar 'home' tab active hai toh SAARE categories dikhao
+  // Warna sirf selected category ka 1 card dikhao
+  const displayServices =
+    activeTab === 'home'
+      ? allServices
+      : allServices.filter((s) => s.id === activeTab)
 
   return (
     <section
@@ -101,7 +55,7 @@ export default function Courses() {
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
 
-        {/* Tabs */}
+        {/* ===== TAB NAVIGATION ===== */}
         <div className="flex justify-center mb-10 md:mb-14">
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 rounded-full bg-white/5 backdrop-blur-md border border-white/10 p-1.5 sm:p-2">
             {tabs.map((tab) => (
@@ -121,7 +75,7 @@ export default function Courses() {
           </div>
         </div>
 
-        {/* Heading */}
+        {/* ===== HEADER ===== */}
         <div
           className={`text-center mb-12 transition-all duration-700 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
@@ -136,85 +90,66 @@ export default function Courses() {
           </p>
         </div>
 
-        {/* Service Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-          {serviceList.map((service: Service, index: number) => {
-            const previewItem = getPreviewItem(service)
+        {/* ===== SERVICES GRID ===== */}
+        <div
+          className={`grid gap-5 md:gap-6 transition-all duration-500 ${
+            displayServices.length === 1
+              ? 'grid-cols-1 max-w-md mx-auto'
+              : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+          }`}
+        >
+          {displayServices.map((service, index) => (
+            <Link
+              key={service.id}
+              href={`/services/${service.id}`}
+              className={`group relative rounded-2xl border bg-[#111111] transition-all duration-500 overflow-hidden hover:-translate-y-1 ${
+                service.id === activeTab
+                  ? 'border-yellow-500/60 shadow-[0_0_30px_rgba(234,179,8,0.15)]'
+                  : 'border-white/10 hover:border-yellow-500/40'
+              } ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+              style={{ transitionDelay: `${index * 80}ms` }}
+            >
+              {/* Preview Image (first item) */}
+              <div className="relative aspect-[16/10] overflow-hidden bg-black/40">
+                {service.items[0]?.type === 'video' ? (
+                  <video
+                    src={service.items[0].src}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500"
+                  />
+                ) : (
+                  <img
+                    src={service.items[0]?.src}
+                    alt={service.name}
+                    onError={(e) => {
+                      e.currentTarget.style.opacity = '0.3'
+                    }}
+                    className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500"
+                  />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+              </div>
 
-            return (
-              <Link
-                key={service.id}
-                href={`/services/${service.id}`}
-                className={`group relative rounded-2xl border bg-[#111111] transition-all duration-500 overflow-hidden hover:-translate-y-1 ${
-                  service.id === 'logo'
-                    ? 'border-yellow-500/60 shadow-[0_0_30px_rgba(234,179,8,0.15)]'
-                    : 'border-white/10 hover:border-yellow-500/40'
-                } ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-                style={{ transitionDelay: `${index * 80}ms` }}
-              >
-                {/* 🔥 Preview Area */}
-                <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a]">
-
-                  {previewItem ? (
-                    <>
-                      {previewItem.type === 'video' ? (
-                        <video
-                          src={previewItem.src}
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500"
-                        />
-                      ) : (
-                        <img
-                          src={previewItem.src}
-                          alt={service.name}
-                          onError={() =>
-                            setImgErrors((prev) => ({ ...prev, [service.id]: true }))
-                          }
-                          className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500"
-                        />
-                      )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-                    </>
-                  ) : (
-                    // 🔥 Image NAHI → Text-based card
-                    <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center relative">
-                      <span className="text-5xl mb-3 opacity-90 group-hover:scale-110 transition-transform duration-500">
-                        {service.emoji}
-                      </span>
-                      <h3 className="text-lg sm:text-xl font-extrabold text-white tracking-wide mb-1">
-                        {fallbackText[service.id] || service.name}
-                      </h3>
-                      <p className="text-xs text-yellow-400/80 font-medium tracking-wider uppercase">
-                        Click to explore →
-                      </p>
-
-                      <div className="absolute inset-0 bg-gradient-to-t from-yellow-500/5 to-transparent pointer-events-none" />
-                    </div>
-                  )}
+              <div className="p-5 sm:p-6">
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="text-2xl">{service.emoji}</span>
+                  <h3 className="text-xl md:text-2xl font-bold text-white">
+                    {service.name}
+                  </h3>
                 </div>
-
-                {/* Info */}
-                <div className="p-5 sm:p-6">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-2xl">{service.emoji}</span>
-                    <h3 className="text-xl md:text-2xl font-bold text-white">
-                      {service.name}
-                    </h3>
-                  </div>
-                  <p className="text-sm text-gray-400 leading-relaxed">
-                    {service.tagline}
-                  </p>
-                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-yellow-400">
-                    View All ({service.items.length})
-                    <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-                  </span>
-                </div>
-              </Link>
-            )
-          })}
+                <p className="text-sm text-gray-400 leading-relaxed">
+                  {service.tagline}
+                </p>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-yellow-400">
+                  View All ({service.items.length})
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </span>
+              </div>
+            </Link>
+          ))}
         </div>
 
       </div>
