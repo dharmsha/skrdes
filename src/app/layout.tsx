@@ -6,7 +6,7 @@ import WhatsAppFloat from '../components/WhatsAppFloat'
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' })
 
-const SITE_URL = 'https://srkdesigner.com' // 👈 apna actual domain daalo
+const SITE_URL = 'https://srkdesigner.in' // 👈 apna actual domain daalo
 const SITE_NAME = 'SRK Designer'
 const WHATSAPP = '+919528794938'
 
@@ -102,7 +102,7 @@ export const metadata = {
       'Premium Logos, Themes, Banners, Frames, SVG Files & GIFs. Trusted Voice Chat Application Management for 2000+ clients worldwide.',
     images: [
       {
-        url: '/srk-og.jpg', // 👈 public folder mein 1200x630 image daalo
+        url: '/srk.jpeg', // 👈 public folder mein 1200x630 image daalo
         width: 1200,
         height: 630,
         alt: 'SRK Designer — Premium Design Services',
