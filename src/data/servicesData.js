@@ -14,7 +14,6 @@ const customCard = (categoryName) => ({
 });
 
 // 🎨 Copyright-free placeholder images (Unsplash CDN)
-// Free to use — commercial bhi allowed
 export const PLACEHOLDERS = {
   banner:  'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80',
   logo:    'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80',
@@ -95,6 +94,56 @@ export const servicesData = {
     items: [
       { id: 1, title: 'Icon Pack', type: 'image', src: '/svg1.png', price: '₹99' },
       { id: 2, title: 'Vector Art', type: 'image', src: '/svg2.jpg', price: '₹149' },
+    ],
+  },
+
+  // ===== 🆕 NEW CATEGORIES =====
+
+  // 💬 Chat Bubble Frame
+  chatbubbleframe: {
+    id: 'chatbubbleframe',
+    name: 'Chat Bubble Frame',
+    emoji: '💬',
+    tagline: 'Stylish chat bubble frames for voice chat app profiles',
+    items: [
+      { id: 1, title: 'Bubble Frame 1', type: 'image', src: '/bubble1.jpg', price: '₹149' },
+      { id: 2, title: 'Bubble Frame 2', type: 'image', src: '/bubble2.jpg', price: '₹149' },
+      { id: 3, title: 'Bubble Frame 3', type: 'image', src: '/bubble3.jpg', price: '₹199' },
+      { id: 4, title: 'Bubble Frame 4', type: 'image', src: '/bubble4.jpg', price: '₹199' },
+    ],
+  },
+
+  // 🏅 Medals
+  medals: {
+    id: 'medals',
+    name: 'Medals',
+    emoji: '🏅',
+    tagline: 'Premium medal designs for events, hosts and ranking rewards',
+    items: [
+      { id: 1, title: 'Medal 1', type: 'image', src: '/medals1.jpg', price: '₹99' },
+      { id: 2, title: 'Medal 2', type: 'image', src: '/medals2.jpg', price: '₹99' },
+      { id: 3, title: 'Medal 3', type: 'image', src: '/medals3.jpg', price: '₹129' },
+      { id: 4, title: 'Medal 4', type: 'image', src: '/medals4.jpg', price: '₹129' },
+      { id: 5, title: 'Medal 5', type: 'image', src: '/medals5.jpg', price: '₹149' },
+      { id: 6, title: 'Medal 6', type: 'image', src: '/medals.jpg', price: '₹149' },
+    ],
+  },
+
+  // 👑 VIPs Medals
+  vipsmedals: {
+    id: 'vipsmedals',
+    name: 'VIPs Medals',
+    emoji: '👑',
+    tagline: 'Exclusive VIP medal designs for premium users and top hosts',
+    items: [
+      { id: 1, title: 'VIP Medal 1', type: 'image', src: '/vip1.jpg', price: '₹199' },
+      { id: 2, title: 'VIP Medal 2', type: 'image', src: '/vip2.jpg', price: '₹199' },
+      { id: 3, title: 'VIP Medal 3', type: 'image', src: '/vip3.jpg', price: '₹249' },
+      { id: 4, title: 'VIP Medal 4', type: 'image', src: '/vip4.jpg', price: '₹249' },
+      { id: 5, title: 'VIP Medal 5', type: 'image', src: '/vip5.jpg', price: '₹299' },
+      { id: 6, title: 'VIP Medal 6', type: 'image', src: '/vip6.jpg', price: '₹299' },
+      { id: 7, title: 'VIP Medal 7', type: 'image', src: '/vip7.jpg', price: '₹349' },
+      { id: 8, title: 'VIP Medal 8', type: 'image', src: '/vip8.jpg', price: '₹349' },
     ],
   },
 };

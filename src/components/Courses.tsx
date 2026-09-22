@@ -6,13 +6,16 @@ import { servicesData } from '@/data/servicesData'
 
 // 🎯 Tabs
 const tabs = [
-  { id: 'home',    name: 'Home',            emoji: '🏠' },
-  { id: 'banner',  name: 'Banner',          emoji: '🖼️' },
-  { id: 'logo',    name: 'Logo',            emoji: '🎨' },
-  { id: 'theme',   name: 'Theme',           emoji: '✨' },
-  { id: 'frame',   name: 'Frame',           emoji: '🖼️' },
-  { id: 'gif',     name: 'Customised GIF',  emoji: '🎁' },
-  { id: 'svg',     name: 'SVG Files',       emoji: '📁' },
+  { id: 'home',              name: 'Home',               emoji: '🏠' },
+  { id: 'banner',            name: 'Banner',             emoji: '🖼️' },
+  { id: 'logo',              name: 'Logo',               emoji: '🎨' },
+  { id: 'theme',             name: 'Theme',              emoji: '✨' },
+  { id: 'frame',             name: 'Frame',              emoji: '🖼️' },
+  { id: 'gif',               name: 'Customised GIF',     emoji: '🎁' },
+  { id: 'svg',               name: 'SVG Files',          emoji: '📁' },
+  { id: 'chatbubbleframe',   name: 'Chat Bubble Frame',  emoji: '💬' },
+  { id: 'medals',            name: 'Medals',             emoji: '🏅' },
+  { id: 'vipsmedals',        name: 'VIPs Medals',        emoji: '👑' },
 ]
 
 export default function Services() {
@@ -31,11 +34,8 @@ export default function Services() {
     return () => observer.disconnect()
   }, [])
 
-  // 🎯 Active tab ke hisaab se services filter karo
   const allServices = Object.values(servicesData)
 
-  // Agar 'home' tab active hai toh SAARE categories dikhao
-  // Warna sirf selected category ka 1 card dikhao
   const displayServices =
     activeTab === 'home'
       ? allServices
@@ -109,7 +109,7 @@ export default function Services() {
               } ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
               style={{ transitionDelay: `${index * 80}ms` }}
             >
-              {/* Preview Image (first item) */}
+              {/* Preview Image */}
               <div className="relative aspect-[16/10] overflow-hidden bg-black/40">
                 {service.items[0]?.type === 'video' ? (
                   <video
