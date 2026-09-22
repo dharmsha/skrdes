@@ -70,8 +70,8 @@ export const servicesData = {
     emoji: '🖼️',
     tagline: 'Stylish frames for photos, DP and gifts',
     items: [
-      { id: 1, title: 'Gold Frame', type: 'image', src: '/frame1.jpg', price: '₹600' },
-      { id: 2, title: 'Neon Frame', type: 'image', src: '/frame2.jpg', price: '₹600-800' },
+      { id: 1, title: 'Gold Frame', type: 'image', src: '/frame2.jpg', price: '₹600' },
+      { id: 2, title: 'Neon Frame', type: 'image', src: '/frame3.jpg', price: '₹600-800' },
     ],
   },
 

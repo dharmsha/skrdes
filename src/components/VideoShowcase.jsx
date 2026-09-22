@@ -46,6 +46,14 @@ const VIDEOS = [
     category: 'Frame',
     desc: 'Stylish frame design for photos and gifts',
   },
+  {
+    id: 6,
+    src: '/frame1.mp4', // 👈 agar 5th video hai toh yahan uska naam daalo
+    poster: '',
+    title: 'Frame Design Preview',
+    category: 'Frame',
+    desc: 'Stylish frame design for photos and gifts',
+  },
 ]
 
 const SLIDE_DURATION = 8000 // 8 seconds
