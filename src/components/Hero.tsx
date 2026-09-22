@@ -75,22 +75,22 @@ export default function Hero() {
       </div>
 
       {/* ===== FOUNDER SECTION (same page) ===== */}
-      <div className="relative z-10 mt-20 w-full max-w-5xl mx-auto">
+      <div className="relative z-10 mt-20 w-full max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 bg-white/5 backdrop-blur-md border border-yellow-500/20 rounded-3xl p-6 md:p-10 shadow-[0_0_40px_rgba(234,179,8,0.1)]">
 
-          {/* Founder Image — BADI + SQUARE */}
+          {/* Founder Image — AUR BADI + SQUARE */}
           <div className="relative flex-shrink-0 w-full md:w-auto">
             {/* Outer Glow */}
             <div className="absolute inset-0 bg-yellow-500/20 blur-3xl scale-105 rounded-3xl" />
 
-            {/* Image Container — Square with yellow border */}
-            <div className="relative w-full md:w-80 lg:w-96 aspect-square rounded-3xl p-[3px] bg-gradient-to-tr from-yellow-400 via-amber-400 to-yellow-500 shadow-[0_0_60px_rgba(234,179,8,0.4)]">
+            {/* Image Container — Big Square with yellow border */}
+            <div className="relative w-full md:w-[480px] lg:w-[560px] aspect-square rounded-3xl p-[3px] bg-gradient-to-tr from-yellow-400 via-amber-400 to-yellow-500 shadow-[0_0_60px_rgba(234,179,8,0.4)]">
               <div className="relative w-full h-full rounded-3xl overflow-hidden bg-black border border-yellow-500/20">
                 <Image
                   src="/sr.jpeg"
                   alt="Founder - SRK Designer"
                   fill
-                  sizes="(max-width: 768px) 100vw, 384px"
+                  sizes="(max-width: 768px) 100vw, 560px"
                   className="object-cover"
                   priority
                 />
